@@ -1,0 +1,569 @@
+Welcome to Core Spring 
+
+Class M-W 9:00am-5:00 pm CDT (10:00am-6:00 pm EDT)
+Start 9:00 (10:00 EDT)
+Lunch 11:30-12:30 (12:30-1:30 EDT 60 min)
+Break 2, 3 (3, 4 EDT 10 min)
+Wrap up: 4:50 ish (5:50 EDT)
+
+Mike Burke 
+mjburke61@gmail.com
+Text 732-637-9484   
+
+eBooks sent last week https://www.protechtraining.com/downloads/CoreSpringCapitalOne.zip
+		     
+Intro's			
+Who you are?
+What you do?
+Java experience(JSE/JEE/Spring)?
+IDE experience (Eclipse)?
+Expectations?
+
+Student Files Including PDF's:	  https://goo.gl/QVW5wa (no access inside firewall try BYOD)
+
+Remote Lab Environment: http://labs.protechtraining.com
+		User ID				Passwd
+	PTACCESS221 -			Pa$$w0rd
+	PTACCESS238
+
+Any issues with remote lab environment:
+	Dmitriy Chernyshev
+		Mobile/Txt Msg: 412-607-8615
+		Phone: 412-810-8855 ext. 159
+	Bryan Soverns
+		Mobile/Txt Msg: 412-526-8830
+		Phone: 412-810-8855 ext. 162  
+
+Once connected, you can hit <Ctrl><Alt><Shift> all from the left side of the keyboard 
+to bring up setting and other features. 
+                                              
+                                                                     
+                                                                     
+                                            
+Standard lab setup (Remote Machines)
+	Lab Installation directory: C:\Users\Administrator\springclass
+	Eclipse Installation Directory: C:\Users\Administrator\Java\eclipse
+	TomEE Installation directory: C:\Users\Administrator\Java\apache-tomcat-7.0.70
+	JDK Installation Directory: C:\Program Files\Java\jdk1.7.0_79
+
+@Autowired wires by type by default (pdf pg 146) in course notes
+	illustrated in SegmentDaoImpl.java line 44/45 on setDatasource method
+
+Spring Singleton vs Prototype Scope annotation 
+	@Component    - followed by
+	@Scope("singleton") default vs @Scope("prototype")
+	// scope="singleton" attribute on bean tag or scope="prototype"
+
+@Qualifier annotation to distinguish between implementation classes
+
+@Named similar to @Component(@Repository (adds run time SQl exceptions/@Service) and 
+@Inject similar to @Resource/@Autowired
+(Used for JEE CDI Context and Dependency Injection)
+
+@RestController (form of @Controller)
+	Lab 11 You can use the new spring 4 @RestController annotation with Spring MVC applications, 
+	removing the need to add @ResponseBody to each of your @RequestMapping methods.
+
+Lab 8 FrequentFlierProgramImpl.java @Service("frequentFlierProgram") and 
+	Lab 7 SegmentDaoImpl.java @Repository("segmentDao") 
+		@'s are forms of @Component for components that reside in the tiers of 
+		a typical JEE application, @Repository for data , and @Service for 
+		business logic
+
+Extraction directory for Tomcat deployed apps
+C:\springclass\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps
+
+After each JEE lab, in the Servers view, right-click on the Tomcat entry and 
+	choose Add and Remove, then remove the project from the server. 
+	This undeploys your application.
+
+Lab workspace setting:	      
+	C:\springclass\workspace 
+	C:\Users\Administrator\springclass\workspace
+	C:\Users\Administrator\springclass\lib\spring3.1.4 - all Spring Libaries (jar files)
+	log4j.rootLogger=INFO, stdout  - in log4j.properties prints verbage to stdout
+	F12 to display javascript console in browser
+
+Labs
+
+Student Files, PPT's, Extra examples, URL resources, course PDF's https://goo.gl/QVW5wa
+All on google drive, can't get access behind firewall
+
+In the event of an outage jump into the next lab until I rejoin
+
+Day 1
+
+Break 10 resume x:xx CDT  x:xx EDT
+
+Lab 1 Introduction to Spring 90 min resume x:xx CDT (x:xx EDT)
+Lab 2 Annotations 45 min resume x:xx ish CDT (x:xx EDT)
+Lab 3 Java Configuration 30 min resume x:xx ish (CDT x:xx EDT)
+	Skip Optional Challenge Part 2: Using the Groovy DSL
+Lab 4 Spring Beans 60 min resume x:xx ish CDT (x:xx EDT)(container lifecycle pdf pg 111)
+	Skip Optional Challenge Part 3
+	
+Day 2
+
+Lab 5 XML Dependency Injection 60 min resume x:xx CDT (x:xx EDT)
+Lab 6 Spring and the Web 70 min resume x:xx CDT (x:xx EDT)
+Lab 7 Spring and JDBC 60-90 minutes resume x:xx CDT (x:xx EDT)
+Lab 8 AOP 30 minutes resume x:xx CDT (x:xx EDT)
+
+Day 3
+
+Lab 9: Transactions 60 min resume x:xx CDT (x:xx EDT)
+Optional Lab 10 Testing 30 min resume x:xx CDT (x:xx EDT)
+Lab 11 Spring MVC REST CRUD 45-90 min resume x:xx CDT (x:xx EDT)
+	Skip Optional Challenge Part 2
+
+Using eclipse Mars with workspace:
+	C:\Users\Mike\Google Drive\Couresware\ProTech\Core Spring\Guides\Latest 2016\springclass\workspace
+To get access to the command prompt, use windows explorer to cd \Users\username\springclass\workspace\lab01 then edit the address
+	to cmd, this will open a command prompt for that directory
+
+Lab 1(90) - IMPORTANT: When generating the eclipse project via gradle eclipse, on the import into eclipse section 
+	Part 1 step _6 d. In the project list, ensure that ONLY lab01 is selected. Then look below the project list and 
+		ensure that the copy projects into workspace checkbox is NOT selected. Press Finish to import the project.
+	Part 1 - Run via right-clicking on lab01/src/main/java/com.oaktreeair.test.FrequentFlierProgram.java, and Run As - Java Application
+	Part 2 - Run via right-clicking on lab01JavaConfig/src/main/java/com.oaktreeair.test.FrequentFlierProgram.java, and Run As - Java Application 
+	Part 3 - Run via right-clicking on lab01XML/src/main/java/com.oaktreeair.test.FrequentFlierProgram.java, and Run As - Java Application 
+		uses ref setter injection on contact01 for flier01
+	@Qualifier annotation to distinguish between implementation classes.
+	Beans that are singleton-scoped and set to be pre-instantiated (the default) are created when the container is created.
+Lab 2(45) - Part 2 - Run via right-clicking on lab02/src/main/java/com.bigbank.test.LoanApplication.java, and Run As - Java Application 
+		uses ref setter injection on "loan01" for "borrower01" (@Resource annotation by name) in Borrower.java
+		also uses Autowiring by type for the loanService on the LoanManager
+
+------>   Added class variable: static Logger log = Logger.getLogger(LoanApplication.class.getName()); to LoanApplication.java
+		to demo programmatic access to Logger
+		inside main - log.info("Going to create LoanManager Obj");
+Lab 3(30) - Part 1 - Run via right-clicking on lab03/src/main/java/com.bigbank.test.LoanApplication.java, and Run As - Java Application 
+	LoanManagerConfig.java combinesJava configuration with Annotation and XML configuration
+		Java configured LoanManager
+		XML configured borrower01
+		Annotation loan1 (see line 30 spring.xml and line 6 Loan.java)
+Lab 4(60) - 
+	Part 1 - Run via right-clicking on lab04/src/main/java/com.oaktreeair.test.FrequentFlierProgram.java, and Run As - Java Application
+		Segment.java modified with @PostConstuct, @PreDestroy to create and remove a temp file local reference containing segmentId
+		getSegmentNumber modified to read from temp file, file is placed in project folder (comment out @PreDestroy)
+	Part 2 - Run via right-clicking on lab04/src/main/java/com.oaktreeair.test.FrequentFlierProgram.java, and Run As - Java Application
+		- Interacting with Bean Lifecycle via BeanPostProcessor which is a Factory hook that allows for custom modification of new bean instances
+		TempFileBeanPostProcessor.java overwrites postProcessBeforeInitialization to call setTempFile on seg01 bean get called prior to init() method
+		(or applied to any bean for that matter that implements TempFileAware (marker interface))
+		- Segment.java modified to add tempFile attribute and implement TempFileAware as well as init, destroy and getSegmentNumber to use Lifecycle inserted tempfile
+		- note email is null since <property name="emailAddress" value="sam@sam.com" /> commented out in spring2.xml
+	Part 3 - (Optional) Run via right-clicking on lab04XML/src/main/java/com.oaktreeair.test.FrequentFlierProgram.java, and Run As - Java Application
+		- flights.xml must be at the project level lab04XML
+		- Add DocumentBuilder attribute to Segement.java as well as getter/setter
+		- Configure spring.xml with:
+			<bean class="javax.xml.parsers.DocumentBuilderFactory" id="domFactory" factory-method="newInstance"/>
+			<bean id="theParser" factory-bean="domFactory" factory-method="newDocumentBuilder" />
+		- Do setter injection on parser attribute of Segment for seg01 using ref="theParser" line 35 spring.xml
+		- Segment init method now reads xml doc to get distance based on flightNumber/originatingCity from seg01 in spring.xml (333/SFO) should result in 445
+Lab 5(60) - Note: constructor type attribute can be primitive or qualified type="java.lang.String" | type="int"
+	Part 1 - Run via right-clicking on lab05XML/src/main/java/com.oaktreeair.test.FrequentFlierProgram.java, and Run As - Java Application
+		uses constructor injection for addrInfo01
+		uses ref setter injection on addrInfo01 for flier01
+		uses ref setter injection on contact01 for flier01
+	Part 2 - Run via right-clicking on springlab05XML/src/main/java/com.oaktreeair.test.FrequentFlierProgram.java, and Run As - Java Application
+		comment out line 34, 35 in spring.xml and run to get exception stack, uncomment to run
+	Part 3 - Run via right-clicking on springlab05XML/src/main/java/com.oaktreeair.test.FrequentFlierProgram.java, and Run As - Java Application
+		step 1 comment out line 42, uncomment line 43 in the spring.xml file, and run then comment 
+		step 2 when add 3 arg, no-arg not generated so error, so either add no-arg, or in spring.xml
+			add bean creation using constructor injection like lines 51-55
+Lab 6(70) - CATALINA_HOME: C:\neon\apache-tomcat-8.0.27  curl.exe is in c:\springclass run from cmd prompt	
+			curl is a tool to transfer data from or to a server, using one of the supported 
+			protocols (DICT, FILE, FTP, FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3, POP3S, RTMP, RTSP, SCP, SFTP, SMB, SMBS, SMTP, SMTPS, TELNET and TFTP)	
+		curl -v http://localhost:8080/JavaExtaExamplesWeb/servlet/ListEmployees
+		curl -v http://localhost:8080/lab06Part1/DisplayFlier
+		curl -v http://localhost:8080/lab06Part2/findFlier.html
+	Part 1 - (Spring No MVC) - Uses @Component annotations 
+		Configure the Tomcat Server Lab 6-1/6-2 steps 1-3
+			web.xml injecting the root web application context via the ContextLoaderListener
+		Run via right-clicking on lab06Part1/Java Resources/src/servlets/DisplayFlier.java and Run As - Run on server
+			Servlet loads up WebApplicationContext
+		lab06Part1/WebContent/WEB-INF/web.xml configured for Spring
+		lab06Part1/WebContent/WEB-INF/spring.xml (configured for component scanning)
+
+	Part 2(MVC) - Run via right-clicking on lab06Part2 and Run As - Run on server
+		set the flier bean ID to flier01
+			lab06Part2/WebContent/WEB-INF/web.xml configured for Spring	
+			OLD: lab06Part2/WebContent/WEB-INF/spring.xml (configured for component scanning)
+				lab06Part2/WebContent/WEB-INF/springmvc-servlet.xml (configured for controller scanning, as well
+				as AnnotationMethodHandlerAdapter and DefaultAnnotationHandlerMapping for finding the annotations 
+				that you will be used to configure the controller. It also helps Spring MVC map incoming requests 
+				to the controllers.)
+			NEW: In this updated Java configuration version, the web.xml file is configured so the Spring dispatcher servlet will load Java configuration class named
+				FrequentFlierConfig. The Spring Dispatcher Servlet is configured to look for JSPs in a folder 
+				named /WEB-INF/jsp
+				@EnableWebMvc is equivalent to <mvc:annotation-driven /> in XML. It enables support for @Controller-annotated 
+					classes that use @RequestMapping to map incoming requests to a certain method.
+				com.oaktreeair.ffprogram.controllers.FindFlierController.java annotated 
+				@Controller
+				@RequestMapping("/findFlier")
+					These annotations configure the class as a SpringMVC controller and indicate 
+					that it should respond to URLs that contain "/findFlier".
+
+			note response.sendRedirect("findFlier.html") in lab06Part2/WebContent/index.jsp 
+				maps /findFlier.html request to FindFlierController since maps to /findFlier so first call
+				(@RequestMapping("/findFlier") line 16 FindFlierController.java)
+					These annotations configure the class as a SpringMVC controller and indicate that it should respond to
+					URLs that contain "/findFlier". Recall that you earlier configured the web.xml for the URL pattern "*.html"
+					- with the combination of these two configurations, the controller will respond to a URL that ends in "/
+					findFlier.html". 
+				to setupForm since a GET request which in turn stores "flierId", "flier01" in the Model
+				since no return string redisplays the mapped jsp in this case findFlier.jsp which
+					has a subsequent POST call to FindFlierController 
+				log4j configured in web.xml
+			jsp's located in lab06Part2/WebContent/WEB-INF/jsp (as configured via FrequentFlierConfig.java)
+Lab 7(90) - Part 1 - During Database Administration and Project Setup (Part 1 step 3) make sure:
+	If you get: "The Web server could not be started. Possible cause: 
+			another server is already running..."
+		1) Kill java.exe from task manager since something using port h2 
+		   	listens on (small .exe not eclipse)
+	  	2) Else check out .h2.server.properties in you user home directory.
+	  		For Windows installations, the user home directory is usually C:\Documents and Settings\[username] 
+	  		or C:\Users\[username]. The configuration file contains the settings of the application 
+	  		and is automatically created when the H2 Console is first started.
+			If the default port (8082) of the H2 Console is already in use by another application, then a 
+			different port needs to be configured. The settings are stored in a properties file. 
+			For details, see Settings of the H2 Console. The relevant entry is webPort.
+			Once establish a connection, get the Login.jsp, bring up H2 Console Preferences (select Preferences link) and
+			change the Web server port number to another port number 8083, Save changes and login
+		Pg Lab 7-1 Part 1 step _3, When launch h2-1.3.161.jar make sure Generic H2 
+			(Server) is selected in Saved Settings  
+			Use windows explorer to navigate to C:\neon\apache-tomcat-8.0.27\lib
+		 		and double click h2-1.3.161.jar
+		Make sure in browser (GUI launched in browser) for H2, 
+			Generic H2 (Server) is selected in Saved Settings
+		In the H2 GUI, set the JDBC URL to jdbc:h2:tcp://localhost/~/test, 
+			typing this VERY carefully. Set both the User Name and Password 
+			to sa, then press Connect.
+		Create the table in H2
+			CREATE TABLE Segment (   SegmentNumber   INTEGER NOT NULL IDENTITY,   SegmentDate     DATE,   FlightNumber    INTEGER,   OrigCity        VARCHAR(10),   Miles           INTEGER,   CONSTRAINT  PK_Item  PRIMARY KEY(SegmentNumber) );
+			INSERT INTO Segment VALUES (NULL, '2009-10-18', 333, 'SFO', 367); INSERT INTO Segment VALUES (NULL, '2009-10-18', 745, 'LAX', 1900); INSERT INTO Segment VALUES (NULL, '2009-10-22', 453, 'BOS', 1900); INSERT INTO Segment VALUES (NULL, '2009-10-18', 112, 'LAX', 367);   
+
+			SELECT * FROM segment
+	Part 2 - lab07/WebContent/META-INF/context.xml is used to configure the datasource
+		as well as <resource-ref> in WEB-INF/web.xml (line 31)
+		lab07/Java Resources/src/com.oaktreeair.ffprogram.config/FrequentFlierConfig.java is used for Java configuration of the DataSource
+
+		@Autowired wires by type by default (pdf pg 146) in course notes
+			illustrated in SegmentDaoImpl.java line 43/44 on setDatasource method
+			since type is javax.sql.DataSource that is bound to flierDataSource which is linked to jdbc/flier in context.xml
+
+	Part 3/4 - Run via right-clicking on lab07/Java Resources/src/com.oaktreeair.ffprogram.servlets/DisplaySegmentCount.java and Run As - Run on server
+	Part 5 - Display All Segments - Run via right-clicking on lab07/Java Resources/src/com.oaktreeair.ffprogram.servlets/DisplayAllSegments.java and Run As - Run on server
+		Insert a segment - Run via right-clicking on lab07/WebContent/insertsegment.html and Run As - Run on server 
+			(see html 5 required attribute)
+Lab 8(30) - Part 1 - Run via right-clicking on lab05XML/src/main/java/com.oaktreeair.test.FrequentFlierProgram.java, and Run As - Java Application
+Lab 9(60) - Part 1 - Class diagram on page Lab 9-2, db file createfliers.sql under lab09/WebContent/WEB-INF
+	Part 2/3 - DataSource @Autowired as in Lab 7 Part 2 for com.oaktreeair.ffprogram.dao.*DaoImpl classes
+			all db methods(insert, find, update) use @Transactional(propagation=Propagation.MANDATORY)
+		com.oaktreeair.ffprogram.FrequentFlierProgramImpl.java business bean uses both DAO's
+			all methods use @Transactional(propagation=Propagation.REQUIRED)
+		note: TransactionAspectSupport.currentTransactionStatus().setRollbackOnly() can be used to programmatically rollback a transaction
+			or can be done declaratively see spring 3 reference  (also add rollbackFor attribute to @Transactional see pdf 237)
+				http://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/transaction.html#transaction-declarative
+				see how transaction managed by tx manager in diagram on above link (see note pdf 224 pg 9-15 course notes)
+	Part 4 - OLD: add transaction processing to spring.xml and map the TransactionManager to the datasource via ref 
+			lines 23 and 31-34 lab09/WebContent/WEB-INF/spring.xml
+		NEW: lab09/Java Resources/src/com.oaktreeair.ffprogram.config/FrequentFlierConfig.java is used to java configure DataSource and Transaction Manager
+	Part 5 - Run via right-clicking on lab09/Java Resources/src/com.oaktreeair.ffprogram.servlets.AwardServlet.java and Run As - Run on server
+Lab 10(60) - (Optional) Part 1 - Run via right-clicking on lab10/src/test/java/insurance.TestPolicy.java, and Run As Junit Test
+	Part 2 - Run via right-clicking on lab10/src/test/java/insurance.TestPolicySpring.java, and Run As Junit Test
+		Configuration of spring container performed in lab10/src/main/java/insurance.config.InsuranceConfig.java
+Lab 11(80) - Can't use the Internal web browser of eclipse, does not display correctly
+	(set to Default system Web browser Window->Web Browser) and for single segment query will see result as a single line, view
+	browser tab source to see xml tags in output
+
+	Part 1 - lab11/Java Resources/src/com.oaktreeair.listeners.MyContextListener.java adds segments 12, 13, 14 into the servletContext
+		com.oaktreeair.ffprogram.Segment.java has the @XmlRootElement annotation to be transformed to/from xml(json)
+		com.oaktreeair.controllers.SegmentController.java is @Autowired to ServletContext line 27 a well as @RequestMapping("rest") 
+		Spring configuration is done via java configuration com.oaktreeair.ffprogram.config.FFProgramConfig.java
+	
+		Run via http://localhost:8080/lab11/rest/segment/12  mapped to getSegment line 39
+
+		List all segments: Run via http://localhost:8080/lab11/rest/segment mapped to getSegments line 64
+	
+	Part 2 - List all segments Run via right-clicking lab11/WebContent/GetAllSegments.html and Run As - Run on server
+			uses com.google.gson.Gson to convert from JSON to Segment
+		List a segment Run via right-clicking lab11/WebContent/GetSegment.html and Run As - Run on server
+		Update a segment Run via right-clicking lab11/WebContent/UpdateSegment.html and Run As - Run on server
+		Delete a segment Run via right-clicking lab11/WebContent/DeleteSegment.html and Run As - Run on server
+		Add a segment Run via right-clicking lab11/WebContent/AddSegment.html and Run As - Run on server
+
+		Demo stand alone Java client List a segment lab11/Java Resources/client.GetSegmentClient.java
+			List all segments lab11/Java Resources/client.GetSegmentsClient.java,
+			Delete a segment Run via right-clicking lab11/Java Resources/client.DeleteClient.java
+	
+	curl.exe in c:\springclass run from cmd prompt	
+	curl is a tool to transfer data from or to a server, using one of the supported 
+		protocols (DICT, FILE, FTP, FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3, POP3S, RTMP, RTSP, SCP, SFTP, SMB, SMBS, SMTP, SMTPS, TELNET and TFTP)	
+curl -v -H "Accept: application/xml" http://localhost:8080/lab11/rest/segment/12
+curl -v -H "Accept: application/json" http://localhost:8080/lab11/rest/segment/12  
+curl -v -H "Accept: application/json" http://localhost:8080/lab11/rest/segment
+curl -v -X PUT -H "Content-Type: application/json"  -d "{\"segmentNumber\":12,\"flightNumber\":666,\"originatingCity\":\"DCA\", \"segmentDate\":\"2014-7-8\", \"miles\": 6666}" http://localhost:8080/lab11/rest/segment/12
+curl -v -X POST -H "Content-type: application/json" -d "{\"segmentNumber\":0,\"flightNumber\":666,\"originatingCity\":\"DCA\", \"segmentDate\":\"2014-7-8\", \"miles\": 987}" http://localhost:8080/lab11/rest/segment
+curl -v -X DELETE http://localhost:8080/lab11/rest/segment/seg num   (see seg number generated for POST request to use it to delete the segment)
+
+Custom Capital One Core Spring
+------------------------------
+Day 1
+-------
+Introduction to the Spring Framework
+	Lab 1 - Introduction to Spring
+Spring Annotations
+	Lab 2 - Annotations
+Spring Java Configuration
+	Lab 3 - Spring Java Configuration
+Spring Beans
+	Lab 4 - Spring Beans
+Day 2
+-------
+XML Dependency Injection
+	Lab 5 - XML Dependency Injection  - Autowired demo springlab02My Flier replace 
+			@Resource with @Autowired line 23/24
+Introduction to SpringMVC
+	Lab 6 - Spring MVC
+Spring and JDBC
+	Lab 7 - Spring JDBC
+Introduction to Spring AOP
+Transactions in Spring
+	Lab 8 - Spring JDBC Transactions
+
+Day 3
+-----
+Testing Spring Applications
+	Lab 9 - Testing
+Spring Remoting with RMI, HttpInvoker and JMS
+Introduction to Spring Boot (See Adv spring notes to start an app written in groovy)
+	Open cmd prompt, 
+		cd \advspring
+		set PATH=%PATH%;C:\Program Files\Java\jdk1.8.0_71\bin;C:\advSpring\spring-1.3.1.RELEASE\bin;C:\advSpring\spring-xd-1.3.0.RELEASE\xd\bin;%PATH%
+		more app.groovy
+		spring run app.groovy
+		open browser:  http://localhost:8080/
+	CTRL-C to kill
+Introduction to REST
+	Lab 10: Intro REST
+RESTful CRUD Services
+Spring and REST
+	Lab 11 - Spring REST
+
+Extraction directory for TOMEE deployed apps
+C:\springclass\springclass\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps
+
+Demo
+
+Spring trying to provide Low-Coupling with High-Cohesion
+
+Low coupling is often a sign of a well-structured computer system and a good design, and when combined with 
+high cohesion, supports the general goals of high readability and maintainability.
+
+Modules with high cohesion tend to be preferable because high cohesion is associated with several desirable 
+traits of software including robustness, reliability, reusability, and understandability whereas low cohesion 
+is associated with undesirable traits such as being difficult to maintain, test, reuse, or even understand.
+
+Show SimpleDependencyLookup/src/com.lq/TraditionalGreetingsTest.java reference to EnglishGreeter() is High coupling
+even though codes to an interface Greeter, will require changes to code to work with other language greeter (French,German,...)
+
+With Spring and Di (Depencency Injection, IOC Inversion Of Control) SimpleDependencyLookup/src/com.lq/GreetingsTest.java
+can simply change the xml file, greetings.xml to select which language greeter to use com.lq.FrenchGreeter/GermanGreeter/EnglishGreeter
+
+Same applies with SimpleDependencyLookup/src/com.lq/NamesCollection.java, can select which collection to use by tweeking greetings.xml
+
+One more sample:
+
+ExtraExampleSpring/src/com.sample.app/OutputGeneratorApp.java // First sample - Create an instance directly. High coupling
+ExtraExampleSpring/src/com.sample.app/OutputHelperApp.java // Second sample - Utilize the helper class. Slightly lower coupling
+ExtraExampleSpring/src/com.sample.app/DIOutputHelperApp // Third sample - Utilize the helper class but with Dependency Injection (DI).
+	modify line 15 sample.xml to either CsvOutputGenerator or XmlOutputGenerator
+ExtraExampleSpring/test/xom.sample.di/DIOutputHelperTest.java Junit 4 test program
+
+You can mix both, Constructor-based and Setter-based DI but it is a good rule of thumb to use constructor 
+arguments for mandatory dependencies and setters for optional dependencies.
+
+Autowiring is less exact than explicit wiring, so if possible prefer using explict wiring.
+
+Annotation injection is performed before XML injection, thus the latter configuration will override 
+the former for properties wired through both approaches.
+
+The @Required annotation applies to bean property setter methods.
+
+The @Autowired annotation can apply to bean property setter methods, non-setter methods, 
+constructor and properties.
+
+You cannot autowire so-called simple properties such as primitives, Strings, and Classes 
+(and arrays of such simple properties). This limitation is by-design.
+
+The @Qualifier annotation along with @Autowired can be used to remove the confusion by specifiying 
+which exact bean will be wired.
+
+Spring supports JSR-250 based annotations which include @Resource, @PostConstruct and @PreDestroy 
+annotations.
+
+Java Based Configuration http://www.tutorialspoint.com/spring/spring_java_based_configuration.htm
+
+Event Handling in Spring http://www.tutorialspoint.com/spring/event_handling_in_spring.htm
+
+AOP helps you decouple cross-cutting concerns from the objects that they affect. 
+AOP is like triggers in programming languages such as Perl, .NET, Java and others.
+
+	Had to download aspectj-weaver.jar to get AOP example woking
+
+XML Schema Based AOP http://www.tutorialspoint.com/spring/schema_based_aop_appoach.htm
+@AspectJ Based AOP http://www.tutorialspoint.com/spring/aspectj_based_aop_appoach.htm
+
+A nice little inner bean example http://www.tutorialspoint.com/spring/spring_injecting_inner_beans.htm
+nice little inner bean example
+
+A common practice when using the JdbcTemplate class is to configure a DataSource in your 
+Spring configuration file, and then dependency-inject that shared DataSource bean into your 
+DAO classes, and the JdbcTemplate is created in the setter for the DataSource.
+
+Spring JDBC Example http://www.tutorialspoint.com/spring/spring_jdbc_example.htm
+
+log4j.properties which defines standard rules required for Log4J to produce log messages
+
+global session (for bean scope)
+	Scopes a single bean definition to the lifecycle of a global HTTP Session. 
+	Typically only valid when used in a portlet context. Only valid in the context of a
+	web-aware Spring ApplicationContext.
+
+<constructor-arg type="int" ...> or <constructor-arg index="0" ...> or <constructor-arg name="years"
+
+<beans default-init-method="init"></beans>
+
+xml based property SpEl setting
+	<property name="randomNumber" value="#{ T(java.lang.Math).random() * 100.0 }"/>
+	<property name="defaultLocale" value="#{ systemProperties[user.region] }"/>
+Annotation based: @Value("#{ systemProperties[user.region] }") private String defaultLocale;
+
+AOP proxy: an object created by the AOP framework in order to implement the aspect contracts 
+	(advise method executions and so on). In the Spring Framework, an AOP proxy will be a 
+	JDK dynamic proxy or a CGLIB proxy.
+
+Break x resume x
+
+In the event of a power outage jump into the next lab until I rejoin
+
+Lab 1 Introduction to Spring 60 min resume x
+Lab 2 Spring Containers 40 min resume resume x
+Lab 3 Spring DI 60 min resume x
+Lab 4 Spring Beans 60 min resume x part 4 optional skip if not enough time
+Lab 5 Spring Wiring 60 min resume x
+Lab 6 Spring MVC 80 min resume x
+Lab 7 JDBC Template 80 min resume x
+Lab 8 Transactions 80 min resume x
+Optional Lab 9 Testing 60 min resume x
+Lab 10 REST 30 min resume x
+Lab 11 Spring MVC REST CRUD 80 min resume x
+
+Setup:
+	http://descriptor.com/setupguides/spring-core/setup/eclipse-kepler-tomcat7/setupguide.html
+	http://goo.gl/dvkugF step 6 Tomcat version 7 step 7 for student files
+
+Clean up date in segement display Lab 11
+
+var fullDate = new Date(segment.segmentDate);
+var twoDigitMonth = (fullDate.getMonth()+1)+"";
+if(twoDigitMonth.length == 1) twoDigitMonth = "0" + twoDigitMonth;
+var twoDigitDay = fullDate.getDate()+"";
+if(twoDigitDay.length == 1) twoDigitDay = "0" + twoDigitDay;
+var currentDate = twoDigitMonth + "/" + twoDigitDay + "/" + fullDate.getFullYear();
+
+	   $("#segmentlist").append("<tr>" +
+	      "<td>" + segment.segmentNumber +"</td>" +
+	      "<td>" + segment.flightNumber + "</td>" +
+	      "<td>" + segment.originatingCity + "</td>" +
+	      "<td>" + currentDate + "</td>" +
+	      "<td>" + segment.miles + "</td>" +
+	      "</tr>");	
+
+MVC - Design Pattern (JEE)
+
+M - Model - business logic, database access ...
+	PJB (POJO), EJB, Web Services, JDBC, JPA (POJO/PJB), DAO
+V - View 
+	HTML, JSP, XHTML, JSF components
+C - Controller 
+	Servlets (Interact with Model, dispatch to View), Spring MVC, JSF, Struts
+
+
+Including an xml in another:
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+			">
+		<import resource="beans1.xml" />
+		<bean id="string6" class="java.lang.String">
+		<constructor-arg value="Another String" />
+		</bean>
+		<alias name="string4" alias="string7" />
+	</beans>
+@Import annotation allows for loading @Bean definitions from another configuration class
+
+Spring 3 Java based configuration:
+	@Configuration
+	public class AppConfig {
+
+   	 	@Bean
+    		public TransferService transferService() {
+       			 return new TransferServiceImpl();
+   	 	}
+
+	}
+        The preceding configuration is exactly equivalent to the following Spring XML:
+
+	<beans>
+    		<bean id="transferService" class="com.acme.TransferServiceImpl"/>
+	</beans>
+
+XML means for seting transaction options:
+
+	<bean id="sharedTransactionTemplate"
+       	 	class="org.springframework.transaction.support.TransactionTemplate">
+    			<property name="isolationLevelName" value="ISOLATION_READ_UNCOMMITTED"/>
+    			<property name="timeout" value="30"/>
+	</bean>
+
+See 16. Transaction Management for details of adding transaction behavior to all beans - tx
+	transactional advice in 16.5.2 Example of declarative transaction implementation of user doc
+
+Alex, Lisa Richmond
+Brandon, Domonic Wilmington
+Rolf McLean
+
+Class M-W 9:00am-5:00 pm
+
+Start 9:00
+Break 10:30 (10 min)
+Lunch 12:00-1:00
+Break 2, 3 (10 min)
+Wrap up: 4:45
+
+Newer Core Spring
+
+build.gradle
+GRADLE_HOME=C:\gradle-2.14.1
+GRADLE_USER_HOME=C:\gradlehome
+PATH=%GRADLE_HOME%\bin;%PATH% 
+
+C:\Users\Mike\Google Drive\Couresware\ProTech\Core Spring\Guides\Latest 2016\springclass\workspace\lab01
+
+workspace:
+
+C:\Users\Mike\Google Drive\Couresware\ProTech\Core Spring\Guides\Latest 2016\springclass\workspace
+
+curl -v -H "Accept: application/xml" http://localhost:8080/lab11/rest/segment/12
+curl -v -H "Accept: application/json" http://localhost:8080/lab11/rest/segment/12
+curl -v -H "Accept: application/json" http://localhost:8080/lab11/rest/segment
+
+Old eBook:
+
+ https://www.protechtraining.com/downloads/Corespring_Previous.zip
+
+
